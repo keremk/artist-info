@@ -1,0 +1,20 @@
+{
+  "name": "artist-info",
+  "version": "1.0.0",
+  "description": "Provide info for a given artist",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kerem Karatal",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "ramda": "^0.25.0",
+    "req-res-utils": "https://github.com/keremk/req-res-utils.git"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
+}
