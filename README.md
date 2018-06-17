@@ -14,7 +14,7 @@ For batched support:
 or for single item:
 
 ```
-GET /movies?id=2
+GET /artists?id=2
 ```
 
 And the response is:
@@ -56,7 +56,7 @@ And the response is:
 ## Docker
 Following ENV variables are available:
 
-`SERVICE_NAME`: movie-info (Default)
+`SERVICE_NAME`: artist-info (Default)
 
 `FAIL_PERCENT`: 0.3 (Default) - Indicates the percent of time this service will simulate a failure (500 response). This is used to simulate failures so that you can test retries, circuit breakers etc.
 
