@@ -8,15 +8,16 @@ const service_name = process.env.SERVICE_NAME || 'artist-info'
 const failPercent = process.env.FAIL_PERCENT || 0.3;
 const maxAllowed = process.env.MAX_ALLOWED || 10;
 
-// Load sample data
-const artists = require('./data/artists.json');
-
 // Response resolvers
 const createArtistInfo = (artists, artistId) => {
   const artist = artists[artistId]  
-  artist.id = artistId;
-  artist.profilePath = `https://image.tmdb.org/t/p/w185${artist.profilePath}`;
-  return artist;
+  return {
+    id: artistId,
+    name: artist.name,
+    profilePath: `https://image.tmdb.org/t/p/w185${artist.profilePath}`,
+    gender: artist.gender,
+    movies: artist.movies
+  }
 };
 
 // Initialize the app
@@ -47,6 +48,8 @@ app.use(
 // Simple REST endpoint for artist info
 app.get('/artists', (req, res) => {
   try {
+    const artists = require('./data/artists.json');
+
     const artistsResponse = utils.createResponse(
       req.query,
       maxAllowed,
