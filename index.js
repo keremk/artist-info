@@ -1,24 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const utils = require('req-res-utils');
-const R = require('ramda');
+const artistHelper = require('./src/artist');
 
 const port = process.env.PORT || 3030
 const service_name = process.env.SERVICE_NAME || 'artist-info'
 const failPercent = process.env.FAIL_PERCENT || 0.3;
 const maxAllowed = process.env.MAX_ALLOWED || 10;
-
-// Response resolvers
-const createArtistInfo = (artists, artistId) => {
-  const artist = artists[artistId]  
-  return {
-    id: artistId,
-    name: artist.name,
-    profilePath: `https://image.tmdb.org/t/p/w185${artist.profilePath}`,
-    gender: artist.gender,
-    movies: artist.movies
-  }
-};
 
 // Initialize the app
 const app = express();
@@ -54,7 +42,7 @@ app.get('/artists', (req, res) => {
       req.query,
       maxAllowed,
       artists,
-      createArtistInfo
+      artistHelper.createArtistInfo
     );
     res.send(artistsResponse);
   } catch (error) {
